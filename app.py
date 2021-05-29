@@ -1,18 +1,15 @@
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    result = "<!DOCTYPE HTML><html><head><title>Hello</title></head>"
-    result = result + "<body><h1>Hello world</h1></body></html>"
-    return result
+    return render_template("hello.html",name="World")
 
 @app.route("/hello/<uname>")
 def hello(uname):
-    result = "<!DOCTYPE HTML><html><head><title>Hello</title></head>"
-    result = result + f"<body><h1>Hello {uname}</h1></body></html>"
-    return result
+    return render_template("hello.html",name=uname)
 
 if __name__ == "__main__":
     app.run(host="192.168.137.5",port=5001, debug=True)
